@@ -1,0 +1,372 @@
+{% extends "layout.html" %}
+{% include "includes/_navbar.html" %} 
+{% block body %}
+{% block head %}
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.main-menu {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.menu-item {
+    text-align: center;
+}
+
+.menu-item > a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.menu-item > a:hover {
+    background-color: #ddd;
+}
+
+.sub-menu {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.sub-menu-item {
+    display: block;
+    color: #333;
+    text-decoration: none;
+   
+    padding: 10px;
+  
+}
+
+.sub-menu li a:hover {
+    background-color: #ddd;
+}
+
+button{
+    width: 80%;
+}
+
+.btn-margin{
+    margin-top: 30px;
+}
+/* CSS for the new input menu */
+.input-menu {
+    display: flex;
+    align-items: center;
+}
+
+.input-menu input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.input-menu button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.input-menu button:hover {
+    background-color: #0056b3;
+}
+
+.container-fluid {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.container-fluid h3 {
+    margin-bottom: 20px; /* Add some spacing between the h3 and the image */
+}
+
+.bottom-centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.h3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* Tambahkan gaya tambahan sesuai kebutuhan */
+
+</style>
+{% endblock %}
+
+
+<div>
+    <ul class="main-menu">
+        <li class="menu-item">
+            <a>Umum</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Normal</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Grayscale</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Zoom In</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Zoom Out</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a>Pergeseran</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_left') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Kiri</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_right') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Kanan</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_up') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Atas</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_down') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Bawah</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a>Penerangan</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_multiplication') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Terang (*)</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_division') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Gelap (/)</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_addition') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Terang (+)</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_substraction') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Gelap (-)</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a>Analisis Gambar</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('histogram_rgb') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Histogram</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a>Pemrosesan Gambar</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('histogram_equalizer') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Histogram Equalizer</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a>Filter Gambar</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('edge_detection') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Edge Detection</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('blur') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Blur</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('sharpening') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Sharpening</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <!-- New menu with input fields -->
+        <div class="menu-item">
+            <a>Thresholding</a>
+            <form class="input-menu" action="{{ url_for('thresholding') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="lower-threshold">Lower Threshold:</label>
+                    <input type="number" id="lower-threshold" name="lower_threshold" placeholder="0-255">
+                </div>
+                <div class="input-group">
+                    <label for="higher-threshold">Higher Threshold:</label>
+                    <input type="number" id="higher-threshold" name="higher_threshold" placeholder="0-255">
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Submit</button>
+            </form>
+        </div>
+
+        <div class="menu-item">
+            <a>Blur (Week6)</a>
+            <div class="sub-menu-item">
+                <form id="" action="{{ url_for('average_blur') }}" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-primary">Average Blur</button>
+                </form>
+            </div>
+            <form class="input-menu" action="{{ url_for('median_blur') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="median-blur">Median Blur</label>
+                    <input type="number" id="median-blur" name="median-blur" placeholder="Kernel Size">
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Submit</button>
+            </form>
+            <form class="input-menu" action="{{ url_for('gaussian_blur') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="gaussian-blur">Gaussian Blur</label>
+                    <input type="number" id="gaussian-blur" name="gaussian-blur" placeholder="Kernel Size">
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Submit</button>
+            </form>
+        </div>
+
+
+
+        <li class="menu-item">
+            <a>Filter (Week 6)</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('bilateral_filter') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Bilateral Filter</button>
+                    </form>
+                </div>
+
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('zero_padding') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Zero Padding</button>
+                    </form>
+                </div>
+            
+                
+            </ul>
+        </li>
+        <div class="menu-item">
+            <a>Convolution Filter (Week 6)</a>
+            <form class="input-menu" action="{{ url_for('lowpass_filter') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="lowpass-filter">Lowpass Filter</label>
+                    <input type="number" id="lowpass-filter" name="lowpass-filter" placeholder="Kernel Size">
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Submit</button>
+            </form>
+            <form class="input-menu" action="{{ url_for('highpass_filter') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="highpass-filter">Highpass Filter</label>
+                    <input type="number" id="highpass-filter" name="highpass-filter" placeholder="Kernel Size">
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Submit</button>
+            </form>
+            <form class="input-menu" action="{{ url_for('bandpass_filter') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="bandpass-filter">Bandpass Filter</label>
+                    <input type="number" id="bandpass-filter" name="bandpass-filter" placeholder="Kernel Size">
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Submit</button>
+            </form>
+        </div>
+    </ul>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="jumbotron-fluid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>Before</h3>
+                                <div class="bottom-centered-content">
+                                    <img class="img-fluid" src="/static/img/img_normal.jpg" alt="image here">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="jumbotron-fluid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>After</h3>
+                                <div class="bottom-centered-content">
+                                    <img class="img-fluid" src="{{ url_for('static', filename=file_path) }}" alt="image here">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}

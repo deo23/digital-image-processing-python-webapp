@@ -1,0 +1,256 @@
+{% extends "layout.html" %}
+{% include "includes/_navbar.html" %}
+{% block body %}
+{% block head %}
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.main-menu {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.menu-item {
+    text-align: center;
+}
+
+.menu-item > a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.menu-item > a:hover {
+    background-color: #ddd;
+}
+
+.sub-menu {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.sub-menu-item {
+    display: block;
+    color: #333;
+    text-decoration: none;
+   
+    padding: 10px;
+  
+}
+
+.sub-menu li a:hover {
+    background-color: #ddd;
+}
+
+button{
+    width: 80%;
+}
+/* CSS for the new input menu */
+.input-menu {
+    display: flex;
+    align-items: center;
+}
+
+.input-menu input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.input-menu button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.input-menu button:hover {
+    background-color: #0056b3;
+}
+
+.container-fluid {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.container-fluid h3 {
+    margin-bottom: 20px; /* Add some spacing between the h3 and the image */
+}
+
+.bottom-centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.h3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* Tambahkan gaya tambahan sesuai kebutuhan */
+
+</style>
+{% endblock %}
+<div>
+    <ul class="main-menu">
+        <li class="menu-item">
+            <a href="#">Umum</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Normal</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Grayscale</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Zoom In</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Zoom Out</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Pergeseran</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_left') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Kiri</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_right') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Kanan</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_up') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Atas</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('move_down') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Bawah</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Penerangan</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_multiplication') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Terang (*)</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_division') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Gelap (/)</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_addition') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Terang (+)</button>
+                    </form>
+                </div>
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('brightness_substraction') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Gelap (-)</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Analisis Gambar</a>
+            <ul class="sub-menu">
+                <div class="sub-menu-item">
+                    <form id="" action="{{ url_for('histogram_rgb') }}" method="POST" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary">Histogram</button>
+                    </form>
+                </div>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <div class="row">
+                    {% if file_paths[2] %}
+                    <div class="col-md-4">
+                        <h3>Image RGB</h3>
+                        <img class="img-fluid" src="{{ url_for('static', filename='img/img_now.jpg') }}" alt="image here">
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Red Histogram</h3>
+                        <img class="img-fluid" src="{{ url_for('static', filename=file_paths[0]) }}" alt="image here">
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Green Histogram</h3>
+                        <img class="img-fluid" src="{{ url_for('static', filename=file_paths[1]) }}" alt="image here">
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Blue Histogram</h3>
+                        <img class="img-fluid" src="{{ url_for('static', filename=file_paths[2]) }}" alt="image here">
+                    </div>
+                    {% else %}
+                    <div class="col-md-6">
+                        <h3>Image Greyscaled</h3>
+                        <img class="img-fluid" src="{{ url_for('static', filename='img/img_now.jpg') }}" alt="image here">
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Black Histogram</h3>
+                        <img class="img-fluid" src="{{ url_for('static', filename=file_paths[0]) }}" alt="image here">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+</style>
+{% endblock %}
