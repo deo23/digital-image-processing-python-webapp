@@ -117,14 +117,14 @@ def grayscale():
 @nocache
 def zoomin():
     image_processing.zoomin()
-    return render_template("uploaded.html", file_path="img/img_now.jpg")
+    return render_template("zoom.html", file_path="img/img_now.jpg")
 
 
 @app.route("/zoomout", methods=["POST"])
 @nocache
 def zoomout():
     image_processing.zoomout()
-    return render_template("uploaded.html", file_path="img/img_now.jpg")
+    return render_template("zoom.html", file_path="img/img_now.jpg")
 
 
 @app.route("/move_left", methods=["POST"])
@@ -231,8 +231,8 @@ def histogram_rgb():
 @app.route("/thresholding", methods=["POST"])
 @nocache
 def thresholding():
-    lower_thres = int(request.form["lower_thres"])
-    upper_thres = int(request.form["upper_thres"])
+    lower_thres = int(request.form["lower_threshold"])
+    upper_thres = int(request.form["higher_threshold"])
     image_processing.threshold(lower_thres, upper_thres)
     return render_template("uploaded.html", file_path="img/img_now.jpg")
 
