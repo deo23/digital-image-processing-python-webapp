@@ -36,16 +36,16 @@ This is a web application for performing digital image processing tasks using Op
 ### Thresholding
 - **Thresholding**: Apply binary thresholding to the image based on provided thresholds.
 
-### Blur (Week 6)
+### Blur
 - **Average Blur**: Apply average blurring.
 - **Median Blur**: Apply median blurring with a custom kernel size.
 - **Gaussian Blur**: Apply Gaussian blurring with a custom kernel size.
 
-### Filter (Week 6)
+### Filter
 - **Bilateral Filter**: Apply bilateral filtering.
 - **Zero Padding**: Apply zero padding.
 
-### Convolution Filter (Week 6)
+### Convolution Filter
 - **Lowpass Filter**: Apply a lowpass filter with a custom kernel size.
 - **Highpass Filter**: Apply a highpass filter with a custom kernel size.
 - **Bandpass Filter**: Apply a bandpass filter with a custom kernel size.
